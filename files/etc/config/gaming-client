@@ -1,0 +1,36 @@
+config client 'main'
+	option enabled '1'
+	
+	# Button Configuration
+	option button_pin '17'
+	option button_debounce_ms '50'
+	option long_press_threshold_ms '2000'
+	
+	# VPN Configuration
+	option vpn_socket_path '/var/run/vpn-agent.sock'
+	option vpn_connect_timeout_ms '30000'
+	option vpn_max_retries '3'
+	option vpn_retry_interval_ms '5000'
+	
+	# WebSocket Configuration
+	option ws_server_host '192.168.1.1'
+	option ws_server_port '8765'
+	option ws_connect_timeout_ms '10000'
+	option ws_auto_reconnect '1'
+	option ws_ping_interval_ms '30000'
+	
+	# LED Configuration
+	option led_r_pin '18'
+	option led_g_pin '19'
+	option led_b_pin '20'
+	
+	# State Machine Configuration
+	option auto_retry '1'
+	option max_retry_attempts '3'
+	option retry_interval_s '5'
+	option ps5_query_timeout_s '5'
+	option led_update_duration_s '2'
+	
+	# Logging Configuration
+	option log_level 'info'
+	option log_target 'syslog'
