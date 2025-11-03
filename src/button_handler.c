@@ -8,7 +8,7 @@
  */
 
 // POSIX headers for time and sleep functions
-#define _POSIX_C_SOURCE 199309L
+#define _POSIX_C_SOURCE 200112L
 
 #include "button_handler.h"
 
