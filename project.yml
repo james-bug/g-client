@@ -1,0 +1,120 @@
+---
+# Ceedling 1.0.1 Configuration for gaming-client
+
+:project:
+  :name: gaming-client
+  :build_root: build/
+  :use_exceptions: FALSE
+  :use_mocks: TRUE
+  :compile_threads: 4
+  :test_threads: 4
+
+:release_build:
+  :output: gaming-client.out
+  :use_assembly: FALSE
+
+:paths:
+  :test:
+    - +:tests/**
+    - -:tests/support
+  :source:
+    - src/**
+  :include:
+    - src/**
+    - ../gaming-core/src/**
+  :support:
+    - tests/support
+  :libraries: []
+
+:files:
+  :test: []
+  :source: []
+
+:defines:
+  :common: &common_defines
+    - USE_HAL
+  :test:
+    - *common_defines
+    - TEST
+    - TESTING
+    - UNITY_INCLUDE_DOUBLE
+    - UNITY_DOUBLE_VERBOSE
+  :test_preprocess:
+    - *common_defines
+    - TEST
+    - TESTING
+    - UNITY_INCLUDE_DOUBLE
+    - UNITY_DOUBLE_VERBOSE
+
+:flags:
+  :test:
+    :compile:
+      :*:
+        - -std=c99
+        - -Wall
+        - -Wextra
+        - -Werror
+        - -Wno-unused-parameter
+    :link:
+      :*: []
+
+:cmock:
+  :mock_prefix: mock_
+  :when_no_prototypes: :warn
+  :enforce_strict_ordering: TRUE
+  :plugins:
+    - :ignore
+    - :callback
+    - :return_thru_ptr
+  :treat_as:
+    uint8:    HEX8
+    uint16:   HEX16
+    uint32:   HEX32
+    int8:     INT8
+    bool:     UINT8
+    uint8_t:  HEX8
+    uint16_t: HEX16
+    uint32_t: HEX32
+  :treat_as_void:
+    - button_callback_t
+    - vpn_state_callback_t
+    - ws_message_callback_t
+    - ws_connected_callback_t
+    - ws_disconnected_callback_t
+    - ws_error_callback_t
+    - client_state_callback_t
+    - client_error_callback_t
+  :callback_include_count: TRUE
+  :callback_after_arg_check: FALSE
+
+:gcov:
+  :utilities:
+    - gcovr
+  :reports:
+    - HtmlDetailed
+  :gcovr:
+    :report_root: "."
+    :report_exclude: "^build/|^tests/"
+    :sort_percentage: TRUE
+    :print_summary: TRUE
+    :html_details: TRUE
+    :html_medium_threshold: 75
+    :html_high_threshold: 90
+
+# 如果需要生成 XML 報告給 CI
+:xml_tests_report:
+  :artifact_filename: report.xml
+
+# 插件配置
+:plugins:
+  :enabled:
+    #- stdout_pretty_tests_report
+    - module_generator
+    - gcov
+
+# 環境變數（可選）
+:environment: []
+
+# Test 前置處理器（如果需要）
+:test_build:
+  :use_assembly: FALSE
