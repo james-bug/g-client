@@ -53,6 +53,7 @@ define Build/Compile
 		$(PKG_BUILD_DIR)/client_state_machine.c \
 		$(PKG_BUILD_DIR)/main.c \
 		-L$(STAGING_DIR)/usr/lib \
+		-L$(STAGING_DIR)/root-mediatek/usr/lib \
 		-lgaming-core \
 		-lwebsockets \
 		-luci \
